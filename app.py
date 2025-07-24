@@ -730,8 +730,10 @@ def page_not_found(e):
 def server_error(e):
     return render_template('500.html'), 500
 
-if __name__ == '__main__':
-    # Ensure upload directory exists
+if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     
     # Check if Tesseract is installed
